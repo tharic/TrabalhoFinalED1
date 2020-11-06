@@ -40,8 +40,7 @@ void adicionarEstoque(Produto produto){
     estoque = novoEstoque;
 }
 
-void buscar(){
-
+void buscar(Produto produto){
 
 }
 
@@ -51,17 +50,19 @@ void removerEstoque(Produto produto){
 
 }
 
-void vender(){
+void vender(){//adicionar parâmetros
 
 //buscar produto
 //reduzir quantidade
+    //quantidade = 0 => remover estoque
 
 }
 
-void atualizarEstoque(){
+void atualizarEstoque(){//adicionar parâmetros
 
 //buscar produto
-//alterar quantidade
+//consultar quantidade
+//alterar quantidade ou cadastrar novo produto
 
 }
 
@@ -80,6 +81,7 @@ void novoProduto(char* tipo, char tamanho,  int qtd, float precoCusto){
         novoEstoque(*p);
     }
     else{
+        //if qtd == 0
         adicionarEstoque(*p);
     }
 
@@ -88,6 +90,42 @@ void novoProduto(char* tipo, char tamanho,  int qtd, float precoCusto){
 }
 
 int main() {
+
+    //menu
+    int opcao;
+    printf("\n\t\tO que voce deseja fazer?\n");
+    printf("\n1 - Vender Produto");
+    printf("\n2 - Adicionar algo ao estoque");
+    printf("\n3 - Consultar produtos em estoque");
+    printf("\n\nOPCAO: ");
+
+    scanf("%d", &opcao);
+
+    switch(opcao){
+        case 1:
+            printf("Vendendo: ");
+            scanf("");
+            printf("Quantidade: ");
+            scanf("");
+            printf("Preço:" );
+            scanf("");
+            vender();
+            break;
+
+        case 2:
+            printf("Produto: ");
+            scanf("");
+
+            atualizarEstoque();
+            break;
+
+        case 3:
+            printf("O que deseja buscar? ");
+            scanf(" ");
+            buscar();
+            break;
+
+    }
 
     return 0;
 }
