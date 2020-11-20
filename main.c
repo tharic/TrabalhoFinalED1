@@ -15,12 +15,17 @@ typedef struct roupa{
 typedef struct estoque{
 
     Produto produto;
+    struct estoque* inicio;
     struct estoque* prox;
     struct estoque* anterior;
 
 }Estoque;
 
 Estoque *estoque;
+
+void inicializarLista(Estoque* l){
+    l->inicio = NULL;
+}
 
 void novoEstoque(Produto produto){
     estoque = malloc(sizeof(Estoque));
@@ -40,8 +45,14 @@ void adicionarEstoque(Produto produto){
     estoque = novoEstoque;
 }
 
-void buscar(Produto produto){
-
+Estoque buscar(Estoque* l, Produto pesquisaProduto){
+    Estoque* procura = l->inicio;
+    while(procura != NULL){
+        if(procura->produto.roupa == pesquisaProduto)
+            return procura;
+        procura = procura -> prox;
+    }
+    return (Estoque) NULL;
 }
 
 void removerEstoque(Produto produto){
@@ -122,7 +133,7 @@ int main() {
         case 3:
             printf("O que deseja buscar? ");
             scanf(" ");
-            buscar();
+            buscar( );
             break;
 
 
