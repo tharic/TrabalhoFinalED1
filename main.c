@@ -6,7 +6,7 @@ typedef struct roupa{
     char tamanho; //P , M, G, GG, etc
     int quantidade;
     char* tipo;
-            \\teste 02
+
     float precoCusto;
     float precoVenda;
     float lucro;
