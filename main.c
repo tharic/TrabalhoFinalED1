@@ -57,14 +57,24 @@ void adicionarEstoque(Produto produto){
     estoque = novoEstoque;
 }
 
-Estoque buscar(Estoque* l, Produto pesquisaProduto){
-    Estoque* procura = l->inicio;
-    while(procura != NULL){
-        if(procura->produto.roupa == pesquisaProduto)
-            return procura;
-        procura = procura -> prox;
+void buscarProduto(LISTA *l, int codigoBuscar){ // Procura um produto no estoque por código
+
+    PONT auxiliar = l->inicio;
+
+    if(auxiliar == NULL){
+        
+    } else {
+
+        while(auxiliar != NULL && auxiliar->reg.codigo < codigoBuscar){
+
+            auxiliar = auxiliar->prox; 
+        }
+            if(auxiliar != NULL && auxiliar->reg.codigo == codigoBuscar){
+                printf("\n Codigo: %d \n\n Nome: %s \n Preco de venda: %f \n\n Pais: %s \n Quantidade em estoque: %d \n\n",auxiliar->reg.codigo,auxiliar->reg.nome,auxiliar->reg.precoVenda,auxiliar->reg.tamanho,auxiliar->reg.qtdEstoque);
+            } else {
+                printf("\n Produto nao encontrado!\n");
+            }
     }
-    return (Estoque) NULL;
 }
 
 void reinicializarEstoque(LISTA *l){ //Apaga o estoque anterior
@@ -78,6 +88,8 @@ void reinicializarEstoque(LISTA *l){ //Apaga o estoque anterior
     }
     l->inicio = NULL;
 }
+
+
 
 void vender(){//adicionar parâmetros
 
