@@ -12,7 +12,7 @@ void inserirProdOrdQtd(LISTA *l, REGISTRO elemento){ //Inserir o produto no esto
     novoElemento->reg = elemento; 
     novoElemento->prox = NULL;
 
-    atual = 1->inicio;
+    atual = l->inicio;
 
     while (atual!=NULL && atual->reg.qtdEstoque<elemento.qtdEstoque){
         anterior = atual;
@@ -26,9 +26,24 @@ void inserirProdOrdQtd(LISTA *l, REGISTRO elemento){ //Inserir o produto no esto
 }
 
 void inserirProdOrdTamanho(LISTA *l, REGISTRO elemento){ //Inserir o produto no estoque ordenando pelo tamanho
+    PONT anterior = NULL, atual = NULL, novoElemento = NULL;
+    novoElemento = (PONT) malloc(sizeof(ELEMENTO));
 
+    novoElemento->reg = elemento;
+    novoElemento->prox = NULL; 
 
+    atual = l->inicio;
 
+    while (atual != NULL && strcmp(atual->reg.tamanho, elemento.tamanho) < 0) {
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    if (anterior == NULL) {
+        l->inicio = novoElemento;
+    } else {
+        anterior->prox = novoElemento;
+    }
 }
 
 void adicionarEstoque(Produto produto){
