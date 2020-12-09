@@ -1,38 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "InicEstoque.h"
 
-typedef struct roupa{
-
-    char tamanho; //P , M, G, GG, etc
-    int quantidade;
-    char* tipo;
-
-    float precoCusto;
-    float precoVenda;
-    float lucro;
-}Produto;
-
-typedef struct estoque{
-
-    Produto produto;
-    struct estoque* inicio;
-    struct estoque* prox;
-    struct estoque* anterior;
-
-}Estoque;
-
-Estoque *estoque;
-
-void inicializarLista(Estoque* l){
+void inicializarLista(LISTA *l){
     l->inicio = NULL;
 }
 
-void novoEstoque(Produto produto){
-    estoque = malloc(sizeof(Estoque));
-    estoque->produto = produto;
-    estoque->prox = NULL;
-    estoque->anterior = NULL;
-};
+void inserirProdOrdQtd(LISTA *l, REGISTRO elemento){ //Inserir o produto no estoque ordenando pela quantidade
+
+
+
+}
+
+void inserirProdOrdTamanho(LISTA *l, REGISTRO elemento){ //Inserir o produto no estoque ordenando pelo tamanho
+
+
+
+}
 
 void adicionarEstoque(Produto produto){
 

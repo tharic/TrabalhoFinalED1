@@ -23,9 +23,9 @@ typedef struct {
     PONT inicio;
 } LISTA;
 
-void inicializarEstoque(LISTA *l);
-void inserirProdutoOrdenadoQuantidade(LISTA *l, REGISTRO elemento);
-void inserirProdutoOrdenadoTamanho(LISTA *l, REGISTRO elemento);
+void inicializarLista(LISTA *l);
+void inserirProdOrdQtd(LISTA *l, REGISTRO elemento);
+void inserirProdOrdTamanho(LISTA *l, REGISTRO elemento);
 void excluirProduto(LISTA *l, int elementoExcluir);
 void exibirEstoque(LISTA *l);
 void buscarProduto(LISTA *l, int codigoBuscar);
