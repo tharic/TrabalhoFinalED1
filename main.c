@@ -67,10 +67,16 @@ Estoque buscar(Estoque* l, Produto pesquisaProduto){
     return (Estoque) NULL;
 }
 
-void removerEstoque(Produto produto){
+void reinicializarEstoque(LISTA *l){ //Apaga o estoque anterior
 
-//buscar produto
+    PONT end = l->inicio;
 
+    while (end != NULL) {
+        PONT apagar = end;
+        end = end->prox;
+        free(apagar);
+    }
+    l->inicio = NULL;
 }
 
 void vender(){//adicionar parâmetros
