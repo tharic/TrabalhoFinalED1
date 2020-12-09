@@ -1,13 +1,28 @@
 #include "InicEstoque.h"
 
-void inicializarLista(LISTA *l){
+void inicializarLista(LISTA *l){ //Iniciando a lista
     l->inicio = NULL;
 }
 
 void inserirProdOrdQtd(LISTA *l, REGISTRO elemento){ //Inserir o produto no estoque ordenando pela quantidade
+    PONT anterior = NULL, atual = NULL, novoElemento = NULL;
 
+    novoElemento = (PONT) malloc(sizeof(ELEMENTO));
 
+    novoElemento->reg = elemento; 
+    novoElemento->prox = NULL;
 
+    atual = 1->inicio;
+
+    while (atual!=NULL && atual->reg.qtdEstoque<elemento.qtdEstoque){
+        anterior = atual;
+        atual = atual->prox;
+    }
+    if (anterior == NULL){
+        l->inicio = novoElemento;
+    } else {
+        anterior->prox = novoElemento;
+    }
 }
 
 void inserirProdOrdTamanho(LISTA *l, REGISTRO elemento){ //Inserir o produto no estoque ordenando pelo tamanho
