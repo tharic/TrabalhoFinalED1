@@ -1,4 +1,3 @@
-#ifndef INC_ESTOQUE_CABECALHO
 #define INC_ESTOQUE_CABECALHO
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,4 +33,3 @@ void menuInicial();
 void menuCompleto();
 void limparTela();
 
-#endif
