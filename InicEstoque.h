@@ -1,5 +1,5 @@
-#ifndef CONTROLE_ESTOQUE_HEADER
-#define CONTROLE_ESTOQUE_HEADER
+#ifndef INC_ESTOQUE_CABECALHO
+#define INC_ESTOQUE_CABECALHO
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
