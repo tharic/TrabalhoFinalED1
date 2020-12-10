@@ -89,6 +89,20 @@ void reinicializarEstoque(LISTA *l){ //Apaga o estoque anterior
     l->inicio = NULL;
 }
 
+void exibirEstoque(LISTA *l) {
+    if(end==NULL) {
+        printf("\n Nenhum elemento inserido no estoque.\n");
+    } else {
+        printf("\n Estoque:\n\n");
+        while(end!=NULL) {
+            printf(" Codigo: %d \n\n Nome: %s \n Preco de venda: %f \n\n Tamanho: %s \n Quantidade em estoque: %d \n\n",end->reg.codigo,end->reg.nome,end->reg.precoVenda,end->reg.tamanho,end->reg.qtdEstoque);
+            printf("\n------------------------------------------------------------------------------------------------\n");
+            
+            end = end->prox;
+        }
+    }
+}
+
 
 
 void vender(){//adicionar parâmetros
