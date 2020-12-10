@@ -46,17 +46,6 @@ void inserirProdOrdTamanho(LISTA *l, REGISTRO elemento){ //Inserir o produto no 
     }
 }
 
-void adicionarEstoque(REGISTRO produto){
-
-    REGISTRO *novoEstoque = malloc(sizeof(REGISTRO));
-    REGISTRO *aux = estoque;
-    novoEstoque->nome = produto;
-    aux->anterior = novoEstoque;
-    novoEstoque->prox = &aux;
-    novoEstoque->anterior = NULL;
-    estoque = novoEstoque;
-}
-
 void buscarProduto(LISTA *l, int codigoBuscar){ // Procura um produto no estoque por código
 
     PONT auxiliar = l->inicio;
@@ -128,21 +117,35 @@ void excluirProduto(LISTA *l, int elementoExcluir) {
 
 
 
-void vender(){//adicionar parâmetros
+void venderProduto(LISTA *l, int elementoVender){
 
-//buscar produto
-//reduzir quantidade
-    //quantidade = 0 => remover estoque
+    PONT anterior, atual;
+        anterior = NULL;
+
+        atual = l->inicio
+        while(atual!=NULL && atual->reg.codigo<elementoVender) {
+            anterior = atual;
+            atual = atual->prox;
+        }
+        if(atual==NULL){
+            printf("\n O produto informado nao esta cadastrado.\n");
+        } else {
+            if(anterior==NULL) {
+                l->inicio = atual->prox;
+            } else {
+                anterior->prox = atual->prox;
+            }
+            if (atual->reg.qtdEstoque = 0){
+                free(atual);
+                printf("\n O produto %d não tem mais no estoque.\n",elementoVender);
+            } else{
+                atual->reg.qtdEstoque -1;
+                printf("\n O produto %d foi vendido.\n",elementoVender);
+            }
+        }
 
 }
 
-void atualizarEstoque(){//adicionar parâmetros
-
-//buscar produto
-//consultar quantidade
-//alterar quantidade ou cadastrar novo produto
-
-}
 
 void menuInicial() {
     printf("\n [1] Iniciar o estoque");
@@ -164,7 +167,7 @@ void menuCompleto() {
 
 int main() {
 
-    int opcao=NULL, registroExcluir, registroBuscar;
+    int opcao=NULL, registroExcluir, registroBuscar, registroVender;
 
     LISTA listaEstoque;
     REGISTRO elemento;
@@ -250,6 +253,12 @@ int main() {
             limparTela();
             printf("\n Lista de estoque reinicializada! \n");
             goto menuInicio;
+        case 6:
+            limparTela();
+            printf("\n Qual produto deseja vender ?  ");
+            scanf("%d",&registroVender);
+            venderProduto(&listaEstoque,registroVender);
+            goto iniciarPrograma;
         default :
             limparTela();
             printf("\n Opcao invalida!\n");

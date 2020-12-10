@@ -30,6 +30,7 @@ void excluirProduto(LISTA *l, int elementoExcluir);
 void exibirEstoque(LISTA *l);
 void buscarProduto(LISTA *l, int codigoBuscar);
 void reinicializarEstoque(LISTA *l);
+void venderProduto(LISTA *l, int elementoVender);
 void menuInicial();
 void menuCompleto();
 void limparTela();
