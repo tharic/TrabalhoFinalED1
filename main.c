@@ -79,6 +79,7 @@ void reinicializarEstoque(LISTA *l){ //Apaga o estoque anterior
 }
 
 void exibirEstoque(LISTA *l) {
+    PONT end = l->inicio;
     if(end==NULL) {
         printf("\n Nenhum elemento inserido no estoque.\n");
     } else {
@@ -122,7 +123,7 @@ void venderProduto(LISTA *l, int elementoVender){
     PONT anterior, atual;
         anterior = NULL;
 
-        atual = l->inicio
+        atual = l->inicio;
         while(atual!=NULL && atual->reg.codigo<elementoVender) {
             anterior = atual;
             atual = atual->prox;
