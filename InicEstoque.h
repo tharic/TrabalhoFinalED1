@@ -7,6 +7,7 @@ typedef struct {
     int   codigo;
     char  nome[75];
     float precoVenda;
+    float precoCusto;
     char  tamanho[4]; //P, M, G, GG e outros.
     int   qtdEstoque;
 } REGISTRO;

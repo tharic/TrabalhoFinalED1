@@ -46,10 +46,10 @@ void inserirProdOrdTamanho(LISTA *l, REGISTRO elemento){ //Inserir o produto no 
     }
 }
 
-void adicionarEstoque(Produto produto){
+void adicionarEstoque(REGISTRO produto){
 
-    Estoque *novoEstoque = malloc(sizeof(Estoque));
-    Estoque *aux = estoque;
+    REGISTRO *novoEstoque = malloc(sizeof(REGISTRO));
+    REGISTRO *aux = estoque;
     novoEstoque->produto = produto;
     aux->anterior = novoEstoque;
     novoEstoque->prox = &aux;
@@ -111,14 +111,14 @@ void atualizarEstoque(){//adicionar parâmetros
 
 void novoProduto(char* tipo, char tamanho,  int qtd, float precoCusto){
 
-    Produto *p = malloc(sizeof(Produto));
+    REGISTRO *p = malloc(sizeof(REGISTRO));
 
-    p->quantidade = qtd;
-    p->tipo = tipo;
+    p->qtdEstoque = qtd;
+    p->nome = tipo;
     p->precoCusto = precoCusto;
     p->tamanho = tamanho;
 
-    if(estoque == NULL){
+    if(p == NULL){
         novoEstoque(*p);
     }
     else{
