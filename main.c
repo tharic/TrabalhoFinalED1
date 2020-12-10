@@ -50,7 +50,7 @@ void adicionarEstoque(REGISTRO produto){
 
     REGISTRO *novoEstoque = malloc(sizeof(REGISTRO));
     REGISTRO *aux = estoque;
-    novoEstoque->produto = produto;
+    novoEstoque->nome = produto;
     aux->anterior = novoEstoque;
     novoEstoque->prox = &aux;
     novoEstoque->anterior = NULL;
