@@ -101,6 +101,29 @@ void exibirEstoque(LISTA *l) {
             end = end->prox;
         }
     }
+
+}
+void excluirProduto(LISTA *l, int elementoExcluir) {
+    PONT anterior, atual;
+    anterior = NULL;
+
+    atual = l->inicio;
+
+    while(atual!=NULL && atual->reg.codigo<elementoExcluir) {
+        anterior = atual;
+        atual = atual->prox;
+    }
+    if(atual==NULL){
+        printf("\n O produto informado nao esta cadastrado.\n");
+    } else {
+        if(anterior==NULL) {
+            l->inicio = atual->prox;
+        } else {
+            anterior->prox = atual->prox;
+        }
+        free(atual);
+        printf("\n O produto %d foi excluido.\n",elementoExcluir);
+    }
 }
 
 
