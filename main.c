@@ -144,68 +144,116 @@ void atualizarEstoque(){//adicionar parâmetros
 
 }
 
-
-
-void novoProduto(char* tipo, char tamanho,  int qtd, float precoCusto){
-
-    REGISTRO *p = malloc(sizeof(REGISTRO));
-
-    p->qtdEstoque = qtd;
-    p->nome = tipo;
-    p->precoCusto = precoCusto;
-    p->tamanho = tamanho;
-
-    if(p == NULL){
-        novoEstoque(*p);
-    }
-    else{
-        //if qtd == 0
-        adicionarEstoque(*p);
-    }
-
-    //else if quantidade do produto != 0 -> atualizar estoque
-
+void menuInicial() {
+    printf("\n [1] Iniciar o estoque");
+    printf("\n [0] Sair\n\n");
+    printf("Digite a opcao para continuar: ");
 }
+
+void menuCompleto() {
+    printf("\n [1] Inserir uma roupa no estoque");
+    printf("\n [2] Exibir o estoque de roupas");
+    printf("\n [3] Excluir/vender uma roupa do estoque");
+    printf("\n [4] Buscar uma roupa no estoque");
+    printf("\n [5] Refazer o estoque");
+    printf("\n [0] Sair\n\n");
+    printf("Digite a opcao para continuar: ");
+}
+
+
 
 int main() {
 
-    //menu
-    int opcao;
-    printf("\n\t\tO que voce deseja fazer?\n");
-    printf("\n1 - Vender Produto");
-    printf("\n2 - Adicionar algo ao estoque");
-    printf("\n3 - Consultar produtos em estoque");
-    printf("\n\nOPCAO: ");
+    int opcao=NULL, registroExcluir, registroBuscar;
 
-    scanf("%d", &opcao);
-
-    switch(opcao){
-        case 1:
-            printf("Vendendo: ");
-            scanf("");
-            printf("Quantidade: ");
-            scanf("");
-            printf("Preço:" );
-            scanf("");
-            vender();
-            break;
-
-        case 2:
-            printf("Produto: ");
-            scanf("");
-
-            atualizarEstoque();
-            break;
-
-        case 3:
-            printf("O que deseja buscar? ");
-            scanf(" ");
-            buscar( );
-            break;
-
-
-            //teste commit
+    LISTA listaEstoque;
+    REGISTRO elemento;
+    printf(" ************************");
+    printf("\n Estoque de roupa 1.0.net\n");
+    printf(" ************************\n");
+    menuInicio:
+    menuInicial();
+    scanf("%d",&opcao);
+    if(opcao==0){
+        limparTela();
+        return 0;
+    } else if(opcao==1){
+        inicializarEstoque(&listaEstoque);
+        limparTela();
+        printf("\n Estoque inicializada!\n");
+    } else {
+        limparTela();
+        printf("\n Opcao invalida!\n");
+        goto menuInicio;
     }
-
+    iniciarPrograma:
+    menuCompleto();
+    scanf("%d",&opcao);
+    switch(opcao) {
+        case 0 :
+            limparTela();
+            return 0;
+        case 1 :
+            limparTela();
+            printf("\n Informe o codigo: ");
+            scanf("%i", &elemento.codigo);
+            printf("\n Informe o nome: ");
+            setbuf(stdin, NULL);
+            fgets(elemento.nome, 75, stdin);
+            printf("\n Informe o Tamanho: ");
+            setbuf(stdin, NULL);
+            fgets(elemento.tamanho, 50, stdin);
+            printf("\n Informe o preco de venda: R$");
+            scanf("%f", &elemento.precoVenda);
+            printf("\n Informe a quantidade em estoque: ");
+            scanf("%i", &elemento.qtdEstoque);
+            escolherOrdenacao:
+            printf("\n Como deseja inserir o elemento na lista ?\n");
+            printf("\n [1] Inserir elemento ordenando por quantidade");
+            printf("\n [2] Inserir peca ordenando por tamanho\n\n");
+            printf("Digite a opcao para continuar: ");
+            scanf("%d",&opcao);
+            switch(opcao) {
+                case 1 :
+                    inserirProdutoOrdenadoQuantidade(&listaEstoque,elemento);
+                    limparTela();
+                    printf("\n Produto inserido com sucesso!\n");
+                    goto iniciarPrograma;
+                case 2 :
+                    inserirProdutoOrdenadoTamanho(&listaEstoque,elemento);
+                    limparTela();
+                    printf("\n Produto inserido com sucesso!\n");
+                    goto iniciarPrograma;
+                default :
+                    limparTela();
+                    printf("\n Opcao invalida! Escolha a forma de ordenacao corretamente.\n");
+                    goto escolherOrdenacao;
+            }
+        case 2 :
+            limparTela();
+            exibirEstoque(&listaEstoque);
+            goto iniciarPrograma;
+        case 3 :
+            limparTela();
+            printf("\n Qual produto deseja excluir ?  ");
+            scanf("%d",&registroExcluir);
+            excluirProduto(&listaEstoque,registroExcluir);
+            goto iniciarPrograma;
+        case 4 :
+            limparTela();
+            printf("\n Qual produto deseja buscar ?  ");
+            scanf("%d",&registroBuscar);
+            buscarProduto(&listaEstoque, registroBuscar);
+            goto iniciarPrograma;
+        case 5 :
+            reinicializarEstoque(&listaEstoque);
+            limparTela();
+            printf("\n Lista de estoque reinicializada! \n");
+            goto menuInicio;
+        default :
+            limparTela();
+            printf("\n Opcao invalida!\n");
+            goto iniciarPrograma;
+    }
     return 0;
 }
