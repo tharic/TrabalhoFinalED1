@@ -163,6 +163,13 @@ void menuCompleto() {
     printf("Digite a opcao para continuar: ");
 }
 
+void limparTela() {
+    #ifdef __linux__
+    system("clear");
+    #elif defined WIN32
+    system("cls");
+    #endif
+}
 
 
 int main() {
@@ -181,7 +188,7 @@ int main() {
         limparTela();
         return 0;
     } else if(opcao==1){
-        inicializarEstoque(&listaEstoque);
+        inicializarLista(&listaEstoque);
         limparTela();
         printf("\n Estoque inicializada!\n");
     } else {
@@ -218,12 +225,12 @@ int main() {
             scanf("%d",&opcao);
             switch(opcao) {
                 case 1 :
-                    inserirProdutoOrdenadoQuantidade(&listaEstoque,elemento);
+                    inserirProdOrdQtd(&listaEstoque,elemento);
                     limparTela();
                     printf("\n Produto inserido com sucesso!\n");
                     goto iniciarPrograma;
                 case 2 :
-                    inserirProdutoOrdenadoTamanho(&listaEstoque,elemento);
+                    inserirProdOrdTamanho(&listaEstoque,elemento);
                     limparTela();
                     printf("\n Produto inserido com sucesso!\n");
                     goto iniciarPrograma;
